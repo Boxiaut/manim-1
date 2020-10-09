@@ -1,11 +1,18 @@
-from manim import *
+from manimlib.imports import *
 
 class MoreShapes(Scene):
 	def construct(self):
-		circles = []
-		for i in range(-4,5):
-			circle = Circle(color=GOLD).move_to(i*RIGHT)
-			circles.append(circle)
-
-		for i in range(-4,5):
-			self.play(FadeIn(circles[i+4]),time=.1)
+		text = TextMobject("ShowIncreasingSubsets")
+		text.set_width(6)
+		text1 = TextMobject("LastIncreasingSubsets")
+		text1.set_width(6)
+		text1.move_to(TOP)
+		self.wait()
+		self.play(FadeInFromLarge(
+			text,
+			run_time=0.4, 
+			rate_func=rush_into
+		))
+		
+		self.play(FadeOut(text, taget_mobject=text1))
+		self.wait()
